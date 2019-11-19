@@ -1,0 +1,1 @@
+This is an app with the intention of combining a plant information based API with a weather prediction API to provide the user with more information related to growing plants in their garden.

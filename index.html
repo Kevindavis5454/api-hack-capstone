@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta description="A Gardening and Weather Forecast App">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sprout and Shower</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div class="container">
+    <h1>Choose your plant and location</h1>
+
+    <form id="js-form">
+        <label>Plant</label>
+        <input type="text" name="search-term-one" id="js-search-term-one" placeholder="Rose">
+        <label>Location</label>
+        <input type="text" name="search-term-two" id="js-search-term-two" placeholder="Miami">
+        <input type="submit" value="Get Growing!">
+    </form>
+
+    <p id="js-error-message" class="error-message"></p>
+</div>
+    <section id="results-one" class="hidden">
+        <h2>Search Results Plant</h2>
+        <ul id="results-list-one">
+        </ul>
+    </section>
+    <section id="results-two" class="hidden">
+        <h2>Search Results Location</h2>
+        <ul id="results-list-two">
+        </ul>
+    </section>
+
+<footer>
+    <p>Here's some helpful links!</p>
+    <a href="">Farmer's Almanac</a>
+</footer>
+
+<script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script src="main.js"></script>
+<script src="API-one.js"></script>
+
+</body>
+</html>
