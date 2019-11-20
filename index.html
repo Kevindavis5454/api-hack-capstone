@@ -18,13 +18,18 @@
         <input type="text" name="search-term-one" id="js-search-term-one" placeholder="Rose">
         <label>Location</label>
         <input type="text" name="search-term-two" id="js-search-term-two" placeholder="Miami">
-        <input type="submit" value="Get Growing!">
+        <input type="submit" value="Get Growing!" id="js-plant-search-submit">
     </form>
 
     <p id="js-error-message" class="error-message"></p>
-</div>
+
     <section id="results-one" class="hidden">
-        <h2>Search Results Plant</h2>
+        <h2>Search Results for Common/Scientific Name</h2>
+        <h3>Enter the Plant Id of the Plant you want to know about below</h3>
+        <form id="js-form-id-search">
+            <input type="text" name="plant-id" id="js-plant-id" placeholder="Plant ID Number">
+            <input type="submit" value="Find That Plant!" id="js-plant-id-submit">
+        </form>
         <ul id="results-list-one">
         </ul>
     </section>
@@ -33,7 +38,7 @@
         <ul id="results-list-two">
         </ul>
     </section>
-
+</div>
 <footer>
     <p>Here's some helpful links!</p>
     <a href="">Farmer's Almanac</a>

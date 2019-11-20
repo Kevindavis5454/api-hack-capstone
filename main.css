@@ -10,11 +10,6 @@ button:hover {
     cursor: pointer;
 }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
 .error-message {
     color: red;
 }
