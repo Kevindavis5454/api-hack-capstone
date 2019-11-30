@@ -2,58 +2,79 @@
 
 //DarkSky
 
-const searchURLTWO = '';
+const searchURLTWO = 'https://api.darksky.net/forecast/c867e7ceabc170eb994ba3978add10c6/';
 
-function formatQueryParams(params) {
+/*function formatQueryParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems.join('&');
-}
+}*/
 
 
-function getNatParks(query, maxResults) {
-    //let state = $("#state-option-one option:selected").map(function(){return this.text}).get().join(',');
+function getDarkSky(searchCoordOne) {
 
-    const params = {
-        api_key: '',
-        //q: query,
-        //limit: maxResults,
-        //stateCode: state,
+
+   /* const params = {
+        "" : query ,
     };
 
-    const queryString = formatQueryParams(params);
+    const queryString = formatQueryParams(params);*/
 
-    const url = searchURL + '?' + queryString;
+    const urlDarkSky = searchURLTWO + searchCoordOne;
 
-    console.log(url);
+    console.log(urlDarkSky);
 
-    fetch(url)
+    const proxyUrlDarkSky = 'https://cors-anywhere.herokuapp.com/',
+        targetUrlDarkSky = urlDarkSky;
+
+    fetch(proxyUrlDarkSky + targetUrlDarkSky)
         .then(response => {
             if (response.ok) {
                 return response.json();
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayResults(responseJson))
+        .then(responseJson => displayResultsDarkSky(responseJson))
         .catch(err => {
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
 }
 
-function displayResults(responseJson) {
+function displayResultsDarkSky(responseJson) {
     console.log(responseJson);
-    $('#results-list-two').empty();
 
-    for (let i = 0; i < responseJson.data.length; i++){
+    $('#results-dark-sky').append(`
+    <li>Current Weather: <br>
+        Temperature: ${responseJson.currently.temperature}<br>
+        Precipitation Chance: ${responseJson.currently.precipProbability}<br>
+        Time: ${responseJson.currently.time}<br>
+        Wind Speed: ${responseJson.currently.windSpeed}<br>
+        Dew Point: ${responseJson.currently.dewPoint}<br>
+        Cloud Cover: ${responseJson.currently.cloudCover}<br>
+        </li>
+    <li>Daily Weather:<br>
+        Summary: ${responseJson.daily.summary}<br>
+    </li>
+    <li>Next 8 Day Forecast</li>   
+    `)
 
-        $('#results-list-two').append(`
-        <li><h3>${responseJson.data[i].fullName}</h3><h4>${responseJson.data[i].states}</h4>
-        <p>${responseJson.data[i].description}</p>
-        <a href="${responseJson.data[i].url}">Website</a>
-        <p>${responseJson.data[i].directionsInfo}  <a href="${responseJson.data[i].directionsURL}">Directions</a></p>
-            
-        `)};
-    $('#results').removeClass('hidden');
+    for (let i=0 ; i < responseJson.daily.data.length ; i++) {
+
+        $('#results-dark-sky').append(`
+        
+        <li>Summary: ${responseJson.daily.data[i].summary}<br>
+            Temp. Hi: ${responseJson.daily.data[i].temperatureHigh}<br>
+            Temp. Low: ${responseJson.daily.data[i].temperatureLow}<br>
+            Wind Speed: ${responseJson.daily.data[i].windSpeed} <br>
+            Precipitation Chance: ${responseJson.daily.data[i].precipProbability}<br>
+            Cloud Cover: ${responseJson.daily.data[i].cloudCover}<br>
+            Dew Point: ${responseJson.daily.data[i].dewPoint}
+            </li>
+        `)
+    }
+        
+        
+
 };
 
 
@@ -62,16 +83,15 @@ function displayResults(responseJson) {
 
 
 
-function watchForm() {
-    $('form').submit(event => {
+function watchDarkSky() {
+    $('#jd-form-dark-sky').submit(event => {
         event.preventDefault();
-        const searchTermTwo = $('#js-search-term-two').val();
-        //const maxResults = $('#js-max-results').val();
-        getNatParks(searchTermTwo);// maxResults
+        const searchCoordOne = $('#js-dark-sky-coord').val();
+        getDarkSky(searchCoordOne);
     });
 }
 
 $(function() {
     console.log('App loaded! Waiting for submit');
-    watchForm();
+    watchDarkSky();
 });

@@ -10,10 +10,35 @@ button:hover {
     cursor: pointer;
 }
 
+header {
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+
+.flex-grid {
+    display: flex;
+}
+
+.results-sections {
+    flex: 1;
+    border: 1px black solid;
+}
+
 .error-message {
     color: red;
 }
 
 .hidden {
     display: none;
+}
+
+#plant-picture {
+    max-width: 175px;
+    max-height: 175px;
 }

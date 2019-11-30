@@ -8,39 +8,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sprout and Shower</title>
     <link rel="stylesheet" href="main.css">
+
 </head>
 <body>
-<div class="container">
+    <header>
     <h1>Choose your plant and location</h1>
-
-    <form id="js-form">
-        <label>Plant</label>
-        <input type="text" name="search-term-one" id="js-search-term-one" placeholder="Rose">
-        <label>Location</label>
-        <input type="text" name="search-term-two" id="js-search-term-two" placeholder="Miami">
-        <input type="submit" value="Get Growing!" id="js-plant-search-submit">
-    </form>
-
     <p id="js-error-message" class="error-message"></p>
-
-    <section id="results-one" class="hidden">
-        <h2>Search Results for Common/Scientific Name</h2>
-        <h3>Enter the Plant Id of the Plant you want to know about below</h3>
-        <form id="js-form-id-search">
-            <input type="text" name="plant-id" id="js-plant-id" placeholder="Plant ID Number">
-            <input type="submit" value="Find That Plant!" id="js-plant-id-submit">
+    </header>
+    <div class="flex-grid">
+    <div class="results-sections" id="trefle-results">
+        <form id="js-form">
+            <label>Plant Name: Common or Scientific</label>
+            <br>
+            <input type="text" name="search-term-one" id="js-search-term-one" placeholder="Rose">
+            <input type="submit" value="Find That Plant!" id="js-plant-search-submit">
         </form>
-        <ul id="results-list-one">
-        </ul>
-    </section>
-    <section id="results-two" class="hidden">
-        <h2>Search Results Location</h2>
-        <ul id="results-list-two">
-        </ul>
-    </section>
-</div>
+        <section id="results-one" class="hidden">
+            <h2>Search Results for Common/Scientific Name</h2>
+            <h3>Enter the Plant ID # of the Plant you want to know about below</h3>
+            <form id="js-form-id-search">
+                <input type="text" name="plant-id" id="js-plant-id" placeholder="Plant ID Number">
+                <input type="submit" value="Find That Plant!" id="js-plant-id-submit">
+            </form>
+            <ul id="results-list-one">
+            </ul>
+        </section>
+    </div>
+    <div class="results-sections" id="darksky-results">
+        <form id="js-form-cage">
+            <label>Location: Enter City Name and 2 letter state code</label>
+            <br>
+            <input type="text" name="search-term-two" id="js-search-term-two" placeholder="Miami FL">
+            <input type="submit" value="Find your Coordinates!" id="js-location-search-submit">
+        </form>
+        <section id="results-two" class="hidden">
+            <h2>Search Results Location</h2>
+            <ul id="results-list-two">
+            </ul>
+            <form id="jd-form-dark-sky">
+                <input type="text" name="dark-sky-coord" id="js-dark-sky-coord" placeholder="25.7742658,-80.1936589">
+                <input type="submit" value="Get your weather!" id="js-coord-submit">
+            </form>
+            <ul id="results-dark-sky">
+            </ul>
+        </section>
+    </div>
+    </div>
 <footer>
-    <p>Here's some helpful links!</p>
     <a href="">Farmer's Almanac</a>
 </footer>
 
@@ -50,6 +64,8 @@
         crossorigin="anonymous"></script>
 <script src="main.js"></script>
 <script src="API-one.js"></script>
+    <script src="API-two.js"></script>
+<script src="API-three.js"></script>
 
 </body>
 </html>

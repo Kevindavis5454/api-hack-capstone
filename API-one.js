@@ -1,24 +1,23 @@
 'use strict';
 
 //Trefle
-
+//Global Variables for use within all functions
 const searchURLOne = 'https://trefle.io/api/plants';
 
 const searchURLId = 'https://trefle.io/api/plants/';
 
 const apiKeyOne = "eGxMYTdpWXQ1eUh2T1FDMy95RHZNQT09";
 
-const linkKey = '?token=eGxMYTdpWXQ1eUh2T1FDMy95RHZNQT09';
 
 
-
+//function to encode the parameters we want to include in the query line to be in the proper URL format
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems.join('&');
 }
 
-
+//Function to query the Json Data from Trefle off a common or scientific plant name search
 function getTrefle(query) {
 
     const params = {
@@ -47,7 +46,7 @@ function getTrefle(query) {
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
 }
-
+// Function to display the results from the common or scientific plant name search
 function displayResults(responseJson) {
     console.log(responseJson);
 
@@ -112,19 +111,59 @@ function displayResultsPlantId (responseJson) {
     console.log(responseJson);
     $('#results-list-one').empty();
 
-    $('#results-list-one').append(`
-        <li><h3>Common Name: ${responseJson.common_name}</h3>
-            <h4>Scientific Name: ${responseJson.scientific_name}</h4>
-            <img src="${responseJson.images[0].url}" alt="Flower Picture">
-            <img src="${responseJson.images[1].url}" alt="Flower Picture">
-       </li>
-       <li><h3>Growing Information</h3>
-       <p>Temperature Minimum:</p>
-       </li>
-        
-            
-        `);
 
+    if (responseJson.common_name !== null) {
+        $('#results-list-one').append(`
+        <li><h3>Common Name: ${responseJson.common_name}</h3></li>
+        `);
+    }
+
+    $('#results-list-one').append(`
+        <li>Plant ID: ${responseJson.id}</li>
+    `)
+
+    if (responseJson.scientific_name !== null) {
+        $('#results-list-one').append(`
+        <li><h4>Scientific Name: ${responseJson.scientific_name}</h4></li>
+        `);
+    }
+
+    if (responseJson.division === null || responseJson.class === null || responseJson.order === null || responseJson.family === null || responseJson.genus === null ) {
+        $('#results-list-one').append(`
+        <li> Division/Class/Order/Family/Genus Data not found</li>
+        `)
+    }
+        else {
+        $('#results-list-one').append(`
+        <li>Division: ${responseJson.division.name} Class: ${responseJson.class.name}  Order: ${responseJson.order.name} Family: ${responseJson.family.name} Genus: ${responseJson.genus.name}</li>
+    `)
+    }
+    if (responseJson.duration === null){
+        $('#results-list-one').append(`
+        <li>Plant Duration Data not found</li>
+        `)
+    } else {
+        $('#results-list-one').append(`
+        <li>Plant Duration: ${responseJson.duration}</li>
+    `)
+    }
+
+    if (responseJson.images !== null) {
+        for (let i = 0; i < responseJson.images.length; i++) {
+        $('#results-list-one').append(`
+        <li><img id="plant-picture" src="${responseJson.images[i].url}" alt="Flower Picture"></li>
+        `);
+        }
+    }
+    if (responseJson.main_species.growth.temperature_minimum.deg_f === null) {
+        $('#results-list-one').append(`
+            <li>Growth temperature minimum data not found</li>
+        `);
+    }else {
+        $('#results-list-one').append(`
+            <li>Growth Temperature Minimum: ${responseJson.main_species.growth.temperature_minimum.deg_f}</li>
+        `)
+    }
 }
 
 
