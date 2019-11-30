@@ -52,17 +52,40 @@ function displayResults(responseJson) {
 
     $('#results-list-one').empty();
 
-    for (let i = 0; i < responseJson.length; i++){
+    for (let i = 0; i < responseJson.length; i++) {
 
-        $('#results-list-one').append(`
+        if (responseJson[i].common_name === null) {
+            $('#results-list-one').append(`
+        <li><h3>Common Name data not found</h3>
+        <p>${responseJson[i].scientific_name}</p>
+        <form class="js-plant-id-submit"><Label>Plant Id</Label>
+        <input type="submit" value="${responseJson[i].id}" class="js-plant-id-value"></form>
+        </li>
+        `)
+        } else {
+            $('#results-list-one').append(`
         <li><h3>${responseJson[i].common_name}</h3>
         <p>${responseJson[i].scientific_name}</p>
-        <p>Plant Id: ${responseJson[i].id}</p>
+        <form class="js-plant-id-submit"><Label>Plant Id</Label>
+        <input type="submit" value="${responseJson[i].id}" class="js-plant-id-value"><--Click me!</form>
         </li>
-            
-        `)};
+        `)
+        }
+
+    } ;
+    watchPlantIdSearch();
+
+    function watchPlantIdSearch() {
+        $('.js-plant-id-submit').on('click', function() {
+            event.preventDefault();
+            const searchIdOne = $('.js-plant-id-value').val();
+            getPlantIdSearch(searchIdOne);
+        });
+    }
     $('#results-one').removeClass('hidden');
-};
+
+}
+
 
 
 
@@ -167,18 +190,6 @@ function displayResultsPlantId (responseJson) {
 }
 
 
-
-//Function for the user to get specific plant information from the Trefle API using the plant ID
-function watchPlantIdSearch() {
-    $('#js-form-id-search').submit(event => {
-        event.preventDefault();
-        const searchIdOne = $('#js-plant-id').val();
-        getPlantIdSearch(searchIdOne);
-    });
-}
-
-
-
 //Function to initially get Trefle Api Information from a common/scientific name search
 function watchPlantSearch() {
     $('#js-form').submit(event => {
@@ -193,5 +204,4 @@ function watchPlantSearch() {
 $(function() {
     console.log('App loaded! Waiting for submit');
     watchPlantSearch();
-    watchPlantIdSearch();
 });

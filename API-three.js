@@ -47,12 +47,29 @@ function displayResultsCage(responseJson) {
     $('#results-list-two').empty();
 
     $('#results-list-two').append(`
-    <li>Latitude= ${responseJson.results[0].geometry.lat} Longitude= ${responseJson.results[0].geometry.lng}</li>
+    <form id="js-coordinate-submit-form"><label>Latitude/Longitude:</label>
+    <input type="submit" value="${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}" id="js-coordinate-value"><--Click me!
+    </form> 
     <li>City Name: ${responseJson.results[0].formatted}</li>
-    `)
+    `);
+
+    watchDarkSky();
+
+    function watchDarkSky() {
+
+        $('#js-coordinate-submit-form').on('click', function() {
+
+            event.preventDefault();
+            const searchCoordOne = $('#js-coordinate-value').val();
+            getDarkSky(searchCoordOne);
+        });
+    }
 
     $('#results-two').removeClass('hidden');
 };
+
+
+
 
 function watchCage() {
     $('#js-form-cage').submit(event => {

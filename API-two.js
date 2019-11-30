@@ -4,21 +4,7 @@
 
 const searchURLTWO = 'https://api.darksky.net/forecast/c867e7ceabc170eb994ba3978add10c6/';
 
-/*function formatQueryParams(params) {
-    const queryItems = Object.keys(params)
-        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    return queryItems.join('&');
-}*/
-
-
 function getDarkSky(searchCoordOne) {
-
-
-   /* const params = {
-        "" : query ,
-    };
-
-    const queryString = formatQueryParams(params);*/
 
     const urlDarkSky = searchURLTWO + searchCoordOne;
 
@@ -78,20 +64,3 @@ function displayResultsDarkSky(responseJson) {
 };
 
 
-
-
-
-
-
-function watchDarkSky() {
-    $('#jd-form-dark-sky').submit(event => {
-        event.preventDefault();
-        const searchCoordOne = $('#js-dark-sky-coord').val();
-        getDarkSky(searchCoordOne);
-    });
-}
-
-$(function() {
-    console.log('App loaded! Waiting for submit');
-    watchDarkSky();
-});
