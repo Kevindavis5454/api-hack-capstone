@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fe93f5f-5945-4f8f-bf9f-6b7614dbbd10" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +50,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574191554610</updated>
-      <workItem from="1574191555767" duration="30711000" />
+      <workItem from="1574191555767" duration="30950000" />
     </task>
     <task id="LOCAL-00001" summary="Added Trefle API">
       <created>1574271651250</created>
@@ -66,7 +66,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575083632861</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Changed some Text">
+      <created>1575084706602</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575084706602</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,6 +93,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Trefle API" />
     <MESSAGE value="Added OpenCage and Dark Sky APIs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added OpenCage and Dark Sky APIs" />
+    <MESSAGE value="Changed some Text" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed some Text" />
   </component>
 </project>
