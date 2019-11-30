@@ -45,6 +45,7 @@ function displayResultsCage(responseJson) {
     console.log(responseJson);
 
     $('#results-list-two').empty();
+    $('#results-dark-sky').empty();
 
     $('#results-list-two').append(`
     <form id="js-coordinate-submit-form"><label>Latitude/Longitude:</label>

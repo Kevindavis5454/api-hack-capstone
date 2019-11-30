@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4fe93f5f-5945-4f8f-bf9f-6b7614dbbd10" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API-one.js" beforeDir="false" afterPath="$PROJECT_DIR$/API-one.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API-three.js" beforeDir="false" afterPath="$PROJECT_DIR$/API-three.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API-two.js" beforeDir="false" afterPath="$PROJECT_DIR$/API-two.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
@@ -60,7 +59,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574191554610</updated>
-      <workItem from="1574191555767" duration="37534000" />
+      <workItem from="1574191555767" duration="41876000" />
     </task>
     <task id="LOCAL-00001" summary="Added Trefle API">
       <created>1574271651250</created>
@@ -90,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575084794331</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added Styling and Functionality">
+      <created>1575143356477</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575143356478</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +117,7 @@
     <MESSAGE value="Added Trefle API" />
     <MESSAGE value="Added OpenCage and Dark Sky APIs" />
     <MESSAGE value="Changed some Text" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed some Text" />
+    <MESSAGE value="Added Styling and Functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Styling and Functionality" />
   </component>
 </project>

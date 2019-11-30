@@ -1,6 +1,20 @@
 'use strict';
 
 //DarkSky
+function timeConverter(unixTimestamp) {
+    let a = new Date(unixTimestamp * 1000);
+    let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    let year = a.getFullYear();
+    let month = months[a.getMonth()];
+    let date = a.getDate();
+    let hour = a.getHours();
+    let min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
+    let sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
+    let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+}
+console.log(timeConverter(0));
+
 
 const searchURLTWO = 'https://api.darksky.net/forecast/c867e7ceabc170eb994ba3978add10c6/';
 
@@ -31,12 +45,12 @@ function displayResultsDarkSky(responseJson) {
 
     $('#results-dark-sky').append(`
     <li>Current Weather: <br>
-        Temperature: ${responseJson.currently.temperature}<br>
+        Temperature: ${responseJson.currently.temperature}&#8457;<br>
         Precipitation Chance: ${responseJson.currently.precipProbability}<br>
-        Time: ${responseJson.currently.time}<br>
-        Wind Speed: ${responseJson.currently.windSpeed}<br>
-        Dew Point: ${responseJson.currently.dewPoint}<br>
-        Cloud Cover: ${responseJson.currently.cloudCover}<br>
+        Time: ${timeConverter(`${responseJson.currently.time}`)}<br>
+        Wind Speed: ${responseJson.currently.windSpeed}MPH<br>
+        Dew Point: ${responseJson.currently.dewPoint}&#8457;<br>
+        UV Index: ${responseJson.currently.uvIndex}
         </li>
     <li>Daily Weather:<br>
         Summary: ${responseJson.daily.summary}<br>
@@ -46,21 +60,26 @@ function displayResultsDarkSky(responseJson) {
 
     for (let i=0 ; i < responseJson.daily.data.length ; i++) {
 
+
         $('#results-dark-sky').append(`
         
-        <li>Summary: ${responseJson.daily.data[i].summary}<br>
-            Temp. Hi: ${responseJson.daily.data[i].temperatureHigh}<br>
-            Temp. Low: ${responseJson.daily.data[i].temperatureLow}<br>
-            Wind Speed: ${responseJson.daily.data[i].windSpeed} <br>
-            Precipitation Chance: ${responseJson.daily.data[i].precipProbability}<br>
-            Cloud Cover: ${responseJson.daily.data[i].cloudCover}<br>
-            Dew Point: ${responseJson.daily.data[i].dewPoint}
+        <li>Date: ${timeConverter(`${responseJson.daily.data[i].time}`)}
+            Summary: ${responseJson.daily.data[i].summary}<br>
+            Temp. Hi: ${responseJson.daily.data[i].temperatureHigh}&#8457; <br>
+            Temp. Low: ${responseJson.daily.data[i].temperatureLow}&#8457;<br>
+            Wind Speed: ${responseJson.daily.data[i].windSpeed}MPH <br>
+            Precipitation Chance: ${responseJson.daily.data[i].precipProbability}%<br>
+            Precipitation Type: ${responseJson.daily.data[i].precipType}<br>
+            Dew Point: ${responseJson.daily.data[i].dewPoint}&#8457;<br>
+            Sunrise Time: ${timeConverter(`${responseJson.daily.data[i].sunriseTime}`)}<br>
+            Sunset Time: ${timeConverter(`${responseJson.daily.data[i].sunsetTime}`)}<br>
+            UV Index: ${responseJson.daily.data[i].uvIndex} Highest Index Time: ${timeConverter(`${responseJson.daily.data[i].uvIndexTime}`)}
             </li>
         `)
     }
         
         
 
-};
+}
 
 

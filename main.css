@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: 'Merienda One', cursive;
+    font-family: 'Inconsolata', monospace;
 }
 
 button:hover {
@@ -12,8 +12,18 @@ button:hover {
 }
 
 header {
+    font-family: 'Merienda One', cursive;
     display: flex;
     justify-content: center;
+    align-content: center;
+}
+
+label {
+    font-family: 'Merienda One', cursive;
+}
+
+h2 {
+    font-family: 'Merienda One', cursive;
 }
 
 footer {
