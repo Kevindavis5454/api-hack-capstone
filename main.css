@@ -295,7 +295,7 @@ input:focus:-ms-input-placeholder {
 @media screen and (min-width: 0px) and (max-width: 500px) {
 
     .flex-grid {
-        display: block;
+        flex-direction: column;
     }
 
     .results-sections {
