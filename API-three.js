@@ -43,16 +43,20 @@ function getCage(queryCage) {
 
 function displayResultsCage(responseJson) {
     console.log(responseJson);
-
+    $('#js-error-message').remove();
     $('#results-list-two').empty();
-    $('#results-dark-sky').empty();
+    /*$('#results-dark-sky').empty();*/
 
     $('#results-list-two').append(`
     <form id="js-coordinate-submit-form"><label>Latitude/Longitude:</label>
-    <input type="submit" value="${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}" id="js-coordinate-value"><--Click me!
+    <input class="small button green" type="submit" value="${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}" id="js-coordinate-value"><--Click me!
     </form> 
-    <li>City Name: ${responseJson.results[0].formatted}</li>
+    <li><h3 class="mobile">${responseJson.results[0].formatted}</h3></li>
     `);
+
+    $('.spinner.two').fadeOut(10, function(){
+        $('.spinner.two').remove();
+    });
 
     watchDarkSky();
 
@@ -63,6 +67,7 @@ function displayResultsCage(responseJson) {
             event.preventDefault();
             const searchCoordOne = $('#js-coordinate-value').val();
             getDarkSky(searchCoordOne);
+            $('.spinner.three').removeClass('hidden');
         });
     }
 
@@ -77,6 +82,7 @@ function watchCage() {
         event.preventDefault();
         const searchTermTwo = $('#js-search-term-two').val();
         getCage(searchTermTwo);
+        $('.spinner.two').removeClass('hidden');
     });
 }
 

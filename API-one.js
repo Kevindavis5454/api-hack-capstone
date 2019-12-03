@@ -49,7 +49,7 @@ function getTrefle(query) {
 // Function to display the results from the common or scientific plant name search
 function displayResults(responseJson) {
     console.log(responseJson);
-
+    $('#js-error-message').remove();
     $('#results-list-one').empty();
 
     for (let i = 0; i < responseJson.length; i++) {
@@ -59,7 +59,7 @@ function displayResults(responseJson) {
         <li><h3>Common Name data not found</h3>
         <p>${responseJson[i].scientific_name}</p>
         <form class="js-plant-id-submit"><Label>Plant Id</Label>
-        <input type="submit" value="${responseJson[i].id}" class="js-plant-id-value"></form>
+        <input type="submit" value="${responseJson[i].id}" class="js-plant-id-value small button green"><--Click me!</form>
         </li>
         `)
         } else {
@@ -67,12 +67,17 @@ function displayResults(responseJson) {
         <li><h3>${responseJson[i].common_name}</h3>
         <p>${responseJson[i].scientific_name}</p>
         <form class="js-plant-id-submit"><Label>Plant Id</Label>
-        <input type="submit" value="${responseJson[i].id}" class="js-plant-id-value"><--Click me!</form>
+        <input type="submit" value="${responseJson[i].id}" class="js-plant-id-value small button green"><--Click me!</form>
         </li>
         `)
         }
 
     } ;
+
+    $('.spinner.one').fadeOut(10, function(){
+        $('.spinner.one').remove();
+    });
+
     watchPlantIdSearch();
 
     function watchPlantIdSearch() {
@@ -196,6 +201,7 @@ function watchPlantSearch() {
         event.preventDefault();
         const searchTermOne = $('#js-search-term-one').val();
         getTrefle(searchTermOne);
+        $('.spinner.one').removeClass('hidden');
     });
 }
 

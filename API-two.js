@@ -43,8 +43,8 @@ function getDarkSky(searchCoordOne) {
 function displayResultsDarkSky(responseJson) {
     console.log(responseJson);
 
-    $('#results-dark-sky').append(`
-    <li>Current Weather: <br>
+    $('#results-list-two').append(`
+    <li><h3>Current Weather: </h3><br>
         Temperature: ${responseJson.currently.temperature}&#8457;<br>
         Precipitation Chance: ${responseJson.currently.precipProbability}<br>
         Time: ${timeConverter(`${responseJson.currently.time}`)}<br>
@@ -52,18 +52,17 @@ function displayResultsDarkSky(responseJson) {
         Dew Point: ${responseJson.currently.dewPoint}&#8457;<br>
         UV Index: ${responseJson.currently.uvIndex}
         </li>
-    <li>Daily Weather:<br>
+        <li><h3>Next 8 Day Forecast</h3><br>
         Summary: ${responseJson.daily.summary}<br>
-    </li>
-    <li>Next 8 Day Forecast</li>   
+        </li>
     `)
 
     for (let i=0 ; i < responseJson.daily.data.length ; i++) {
 
 
-        $('#results-dark-sky').append(`
+        $('#results-list-two').append(`
         
-        <li>Date: ${timeConverter(`${responseJson.daily.data[i].time}`)}
+        <li><h3>${timeConverter(`${responseJson.daily.data[i].time}`)}</h3><br>
             Summary: ${responseJson.daily.data[i].summary}<br>
             Temp. Hi: ${responseJson.daily.data[i].temperatureHigh}&#8457; <br>
             Temp. Low: ${responseJson.daily.data[i].temperatureLow}&#8457;<br>
@@ -77,6 +76,10 @@ function displayResultsDarkSky(responseJson) {
             </li>
         `)
     }
+
+    $('.spinner.three').fadeOut(10, function(){
+        $('.spinner.three').remove();
+    });
         
         
 
