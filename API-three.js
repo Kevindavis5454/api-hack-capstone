@@ -72,7 +72,7 @@ function displayResultsCage(responseJson) {
     }
 
     $('#results-two').removeClass('hidden');
-};
+}
 
 
 
