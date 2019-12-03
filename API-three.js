@@ -62,7 +62,7 @@ function displayResultsCage(responseJson) {
 
     function watchDarkSky() {
 
-        $('#js-coordinate-submit-form').on('click', function() {
+        $('#js-coordinate-submit-form').on('click touchstart', function() {
 
             event.preventDefault();
             const searchCoordOne = $('#js-coordinate-value').val();
