@@ -15,7 +15,6 @@ function timeConverter(unixTimestamp) {
 }
 console.log(timeConverter(0));
 
-
 const searchURLTWO = 'https://api.darksky.net/forecast/c867e7ceabc170eb994ba3978add10c6/';
 
 function getDarkSky(searchCoordOne) {
@@ -59,7 +58,6 @@ function displayResultsDarkSky(responseJson) {
 
     for (let i=0 ; i < responseJson.daily.data.length ; i++) {
 
-
         $('#results-list-two').append(`
         
         <li><h3>${timeConverter(`${responseJson.daily.data[i].time}`)}</h3><br>
@@ -76,13 +74,9 @@ function displayResultsDarkSky(responseJson) {
             </li>
         `)
     }
-
     $('.spinner.three').fadeOut(10, function(){
         $('.spinner.three').remove();
     });
-        
-        
-
 }
 
 

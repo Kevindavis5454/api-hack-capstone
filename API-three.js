@@ -45,7 +45,6 @@ function displayResultsCage(responseJson) {
     console.log(responseJson);
     $('#js-error-message').remove();
     $('#results-list-two').empty();
-    /*$('#results-dark-sky').empty();*/
 
     $('#results-list-two').append(`
     <form id="js-coordinate-submit-form"><label>Latitude/Longitude:</label><br>
@@ -73,9 +72,6 @@ function displayResultsCage(responseJson) {
 
     $('#results-two').removeClass('hidden');
 }
-
-
-
 
 function watchCage() {
     $('#js-form-cage').submit(event => {

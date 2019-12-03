@@ -8,8 +8,6 @@ const searchURLId = 'https://trefle.io/api/plants/';
 
 const apiKeyOne = "eGxMYTdpWXQ1eUh2T1FDMy95RHZNQT09";
 
-
-
 //function to encode the parameters we want to include in the query line to be in the proper URL format
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
@@ -46,6 +44,7 @@ function getTrefle(query) {
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
 }
+
 // Function to display the results from the common or scientific plant name search
 function displayResults(responseJson) {
     console.log(responseJson);
@@ -71,7 +70,6 @@ function displayResults(responseJson) {
         </li>
         `)
         }
-
     } ;
 
     $('.spinner.one').fadeOut(10, function(){
@@ -88,11 +86,7 @@ function displayResults(responseJson) {
         });
     }
     $('#results-one').removeClass('hidden');
-
 }
-
-
-
 
 //Function to format the query Parameters for the Plant ID API query
 function formatQueryParamsIdSearch(paramsIdSearch) {
@@ -100,8 +94,6 @@ function formatQueryParamsIdSearch(paramsIdSearch) {
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(paramsIdSearch[key])}`)
     return queryItems.join('&');
 }
-
-
 
 //function to query the Trefle API off the plant ID and return Json Data
 function getPlantIdSearch(queryId) {
@@ -130,32 +122,25 @@ function getPlantIdSearch(queryId) {
         .catch(err => {
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
-
 }
-
 
 // Function to display the Results from the Plant ID Search of the Trefle API
 function displayResultsPlantId (responseJson) {
     console.log(responseJson);
     $('#results-list-one').empty();
-
-
     if (responseJson.common_name !== null) {
         $('#results-list-one').append(`
         <li><h3>Common Name: ${responseJson.common_name}</h3></li>
         `);
     }
-
     $('#results-list-one').append(`
         <li>Plant ID: ${responseJson.id}</li>
     `)
-
     if (responseJson.scientific_name !== null) {
         $('#results-list-one').append(`
         <li><h4>Scientific Name: ${responseJson.scientific_name}</h4></li>
         `);
     }
-
     if (responseJson.division === null || responseJson.class === null || responseJson.order === null || responseJson.family === null || responseJson.genus === null ) {
         $('#results-list-one').append(`
         <li> Division/Class/Order/Family/Genus Data not found</li>
@@ -175,7 +160,6 @@ function displayResultsPlantId (responseJson) {
         <li>Plant Duration: ${responseJson.duration}</li>
     `)
     }
-
     if (responseJson.images !== null) {
         for (let i = 0; i < responseJson.images.length; i++) {
         $('#results-list-one').append(`
@@ -194,7 +178,6 @@ function displayResultsPlantId (responseJson) {
     }
 }
 
-
 //Function to initially get Trefle Api Information from a common/scientific name search
 function watchPlantSearch() {
     $('#js-form').submit(event => {
@@ -204,7 +187,6 @@ function watchPlantSearch() {
         $('.spinner.one').removeClass('hidden');
     });
 }
-
 
 //Function to Start Jquery on the Page
 $(function() {
