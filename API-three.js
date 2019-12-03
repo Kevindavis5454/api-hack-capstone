@@ -48,7 +48,7 @@ function displayResultsCage(responseJson) {
     /*$('#results-dark-sky').empty();*/
 
     $('#results-list-two').append(`
-    <form id="js-coordinate-submit-form"><label>Latitude/Longitude:</label>
+    <form id="js-coordinate-submit-form"><label>Latitude/Longitude:</label><br>
     <input class="small button green" type="submit" value="${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}" id="js-coordinate-value"><--Click me!
     </form> 
     <li><h3 class="mobile">${responseJson.results[0].formatted}</h3></li>
