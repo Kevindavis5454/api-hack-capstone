@@ -11,6 +11,7 @@ html {
 
 header {
     font-family: 'Merienda One', cursive;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,10 +50,10 @@ header {
 
 body {
     font-family: 'Inconsolata', monospace;
-    color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: black;
+    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
     margin: 0;
-    font-weight: 300;
+    /*font-weight: 300;*/
     font-size: 15px;
     background: url(https://cdn.pixabay.com/photo/2016/09/05/15/07/concrete-1646788_1280.jpg), no-repeat, center, bottom;
     background-size: cover;
@@ -62,13 +63,8 @@ body {
     /*background-color: #ebecee;*/
 }
 
-/*html, body {
-    height:100%;
-
-}*/
-
 ul {
-    height: 550px;
+    height: 450px;
     overflow-y: scroll;
 }
 
@@ -93,16 +89,30 @@ li {
     margin: 2px 40px 2px 2px;
     list-style-type: none;
     overflow-y: scroll;
-    box-shadow:inset 5px 5px 40em #000;
+    /*box-shadow:inset 5px 5px 40em #000;*/
 }
 
 .flex-grid {
     display: flex;
 }
 
+.flex-grid-wiki{
+    display: flex;
+    justify-content: center;
+}
+
+.wiki {
+    background-color: white;
+    width: 80%;
+    height: 100%;
+    /*border: 1px black solid;*/
+    margin: 10px 10px 10px 10px;
+}
+
 .results-sections {
+    background-color: white;
     flex: 1;
-    border: 1px black solid;
+    /*border: 1px black solid;*/
     text-align: center;
 }
 
@@ -119,9 +129,9 @@ li {
     max-height: 175px;
 }
 
-#darksky-results, #trefle-results {
+/*#darksky-results, #trefle-results {
     box-shadow:inset 5px 5px 40em #000;
-}
+}*/
 
 
 /*Code below is for the loading animations*/
@@ -253,7 +263,6 @@ li {
 
 /*Code below this line is for Input Styling*/
 
-span,
 input {
 
     border: 2px solid rgba(255, 255, 255, .5);

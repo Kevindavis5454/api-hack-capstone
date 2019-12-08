@@ -95,7 +95,7 @@ function timeConverter(unixTimestamp) {
         $('#results-list-two').empty();
 
         $('#results-list-two').append(`
-    <input class="small button green fade" type="submit" value="${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}" id="js-coordinate-value">
+    <input class="small button green fade hidden" type="submit" value="${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}" id="js-coordinate-value">
     
     <li><h3 class="mobile">${responseJson.results[0].formatted} ${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}</h3></li>
     `);
@@ -217,8 +217,91 @@ function timeConverter(unixTimestamp) {
             <li>Growth Temperature Minimum: ${responseJson.main_species.growth.temperature_minimum.deg_f}</li>
         `)
         }
+        let wikiSearch = `${responseJson.scientific_name}`
+        getWikipediaApi(wikiSearch);
     }
 
+    let wikiParams = {
+    origin: '*',
+    action: 'query',
+    format: 'json',
+    prop: 'extracts|pageimages',
+    indexpageids: 1,
+    redirects: 1,
+    exchars: 1200,
+    // explaintext: 1,
+    exsectionformat: 'plain',
+    piprop: 'name|thumbnail|original',
+    pithumbsize: 250
+};
+//Ajax Call to get Wikipedia API Data
+
+function getWikipediaApi(wikiSearch) {
+    wikiParams.titles = wikiSearch;
+    let url = 'https://en.wikipedia.org/w/api.php';
+        $.getJSON(url, wikiParams, function(responseJson) {
+            displayResultsWiki(responseJson)
+        })
+
+}
+
+//Display Wiki Search Data
+
+function displayResultsWiki(responseJson) {
+    console.log(responseJson);
+    let pageId = responseJson.query.pageids[0];
+    let searchword = responseJson.query.pages[pageId].title.toLowerCase();
+    let pattern = new RegExp(searchword, 'i');
+    if (responseJson.query.pages[pageId].extract) var info = responseJson.query.pages[pageId].extract.replace(pattern, '<b>' + searchword + '</b>').replace('<span id="References">References</span>', '<p></p>').replace(new RegExp('<p><br /></p>', 'g'), '').replace('External links', 'Click more below for links to:');
+    let thumbnail = responseJson.query.pages[pageId].thumbnail;
+    let original = responseJson.query.pages[pageId].original;
+    let pageimage = responseJson.query.pages[pageId].pageimage;
+    let html = "";
+
+    $('.wiki').empty();
+    //If thumbnail is unavailable
+    if (thumbnail === undefined || thumbnail === null) {
+        //Check if extract from is cut off
+        if (info.length < 1000) {
+            info = info.substring(0, info.length - 3)
+            html += info;
+            $('.wiki').append(html);
+
+            //If it is cut, get rid off abbreviated ending
+        } else {
+            info = info.substring(0, info.length - 7)
+            for (var i = 1; i < 6; i++) {
+                if (info.charAt(info.length - i) === '<') {
+                    info = info.substring(0, info.length - i)
+                }
+            }
+            html += info + '...</p>';
+            $('.wiki').append(html);
+        }
+        //If thumbnail is available
+    } else {
+        //Same as above, check if extract is cut off or not
+        if (info.length < 1000) {
+            info = info.substring(0, info.length - 3)
+            html += '<a href="' + original.source + '" data-lity><div class="picWrap"><img class="wikipic" src="' +
+                thumbnail.source + '"><p class="expand"><i class="fa fa-arrows-alt" aria-hidden="true"></i><span class="captions"> &nbsp;' + pageimage.replace(/_/g, ' ').substring(0, pageimage.length - 4) + '</span></div></a>' + info;
+            $('.wiki').append(html);
+        } else {
+            info = info.substring(0, info.length - 7)
+            for (var i = 1; i < 6; i++) {
+                if (info.charAt(info.length - i) === '<') {
+                    info = info.substring(0, info.length - i)
+                }
+            }
+            html += '<a href="' + original.source + '" data-lity><div class="picWrap"><img class="wikipic" src="' +
+                thumbnail.source + '"><p class="expand"><i class="fa fa-arrows-alt" aria-hidden="true"></i><span class="captions"> &nbsp;' + pageimage.replace(/_/g, ' ').substring(0, pageimage.length - 4) + '</span></div></a>' + info + '...</p>';
+            $('.wiki').append(html);
+        }
+    }
+    $('.wiki').append('<hr>');
+    $('.wiki').append('<p class="ext_link"><a href="//en.wikipedia.org/wiki/' + responseJson.query.pages[pageId].title +
+        '" data-lity><i class="fa fa-external-link-square" aria-hidden="true"></i> &nbsp;More on Wikipedia</a></p>');
+}
 
 
 
