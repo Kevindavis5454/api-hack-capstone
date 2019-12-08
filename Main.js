@@ -11,6 +11,11 @@ function timeConverter(unixTimestamp) {
     let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
     return time;
 }
+    /*$('#js-plant-id-value').click(function(e){
+        e.preventDefault();
+        let plantIdSearch = $('.js-plant-id-value').val();
+        getPlantIdSearch(plantIdSearch);
+    });*/
 
     $('#js-submit-both-button').click(function(e){
         e.preventDefault();
@@ -58,24 +63,33 @@ function timeConverter(unixTimestamp) {
         `)
             }
         } ;
-        let plantIdSearch = $('.js-plant-id-value').val();
+
+        watchPlantIdSearch();
+
+        function watchPlantIdSearch() {
+            $('.js-plant-id-submit').on('click', function (e) {
+                e.preventDefault();
+                const plantIdSearch = $('.js-plant-id-value').val();
+                getPlantIdSearch(plantIdSearch);
+            });
+        }
 
         $('.spinner.one').fadeOut(10, function(){
             $('.spinner.one').remove();
         });
-        getCage(cityNameSearch, plantIdSearch);
+        getCage(cityNameSearch);
     }
 
 //Ajax Call to Cage API
     function getCage(cityNameSearch, plantIdSearch) {
         let url =  "https://api.opencagedata.com/geocode/v1/json?key=98064fd649cd4b92a8725b3eb7ae2b19&q=" + cityNameSearch;
         $.getJSON(url, function(responseJson){
-            displayResultsCage(cityNameSearch, responseJson, plantIdSearch);
+            displayResultsCage(cityNameSearch, responseJson);
         });
     }
 
 //Display Cage API Data
-    function displayResultsCage(cityNameSearch, responseJson, plantIdSearch) {
+    function displayResultsCage(cityNameSearch, responseJson) {
         console.log(responseJson);
         $('#js-error-message').remove();
         $('#results-list-two').empty();
@@ -86,22 +100,22 @@ function timeConverter(unixTimestamp) {
     <li><h3 class="mobile">${responseJson.results[0].formatted} ${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}</h3></li>
     `);
         let cityCoordinates = `${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}`;
-        getDarkSky(cityCoordinates, plantIdSearch);
+        getDarkSky(cityCoordinates);
     }
 
 //Ajax Call to DarkSky Api
-    function getDarkSky(cityCoordinates, plantIdSearch) {
+    function getDarkSky(cityCoordinates) {
         let url = 'https://api.darksky.net/forecast/c867e7ceabc170eb994ba3978add10c6/' + cityCoordinates;
         let proxyUrl = 'https://cors-anywhere.herokuapp.com/',
             targetUrl = url;
         let darkSkySearch = proxyUrl + targetUrl;
         $.getJSON(darkSkySearch, function(responseJson){
-            displayResultsDarkSky(responseJson, plantIdSearch)
+            displayResultsDarkSky(responseJson)
         })
     }
 
  //Display DarkSky API Data
-    function displayResultsDarkSky(responseJson, plantIdSearch) {
+    function displayResultsDarkSky(responseJson) {
         console.log(responseJson);
 
         $('#results-list-two').append(`
@@ -136,22 +150,19 @@ function timeConverter(unixTimestamp) {
             </li>
         `)
         }
-        getPlantIdSearch(plantIdSearch);
     }
 
 //Ajax Call to Trefle API ID Search
     function getPlantIdSearch(plantIdSearch) {
-        $('#js-plant-id-value').submit(event => {
-            event.preventDefault();
-
         let url = 'https://trefle.io/api/plants/' + plantIdSearch + '?token=eGxMYTdpWXQ1eUh2T1FDMy95RHZNQT09';
-        const proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+        let proxyUrl = 'https://cors-anywhere.herokuapp.com/',
             targetUrl = url;
-        const trefleIdSearch = proxyUrl + targetUrl;
-        $.getJSON(trefleIdSearch, function(responseJson){
+        let trefleIdSearch = proxyUrl + targetUrl;
+        $.getJSON(trefleIdSearch, function (responseJson) {
             displayResultsPlantId(responseJson)
+
         })
-    })
+
     }
 
 //Display Trefle ID Search Data
