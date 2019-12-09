@@ -1,3 +1,16 @@
+//header inputs
+let inputs = document.querySelectorAll('input');
+[].forEach.call(inputs, function(thisInput) {
+    thisInput.addEventListener('input', function() {
+        if (thisInput.value != '') {
+            thisInput.parentNode.childNodes[3].className = 'label-focus';
+            thisInput.parentNode.childNodes[5].className = 'text-focus';
+        } else {
+            thisInput.parentNode.childNodes[3].className = thisInput.parentNode.childNodes[3].className.replace('label-focus', '');
+            thisInput.parentNode.childNodes[5].className = thisInput.parentNode.childNodes[5].className.replace('text-focus', '');
+        }
+    });
+});
 //Get the Top button:
 mybutton = document.getElementById("topBtn");
 
@@ -41,11 +54,6 @@ function timeConverterOnlyDate(unixTimestamp) {
     let newDate = month + ' ' + date + ' ' + year;
     return newDate;
 }
-    /*$('#js-plant-id-value').click(function(e){
-        e.preventDefault();
-        let plantIdSearch = $('.js-plant-id-value').val();
-        getPlantIdSearch(plantIdSearch);
-    });*/
 
     $('#js-submit-both-button').click(function(e){
         e.preventDefault();

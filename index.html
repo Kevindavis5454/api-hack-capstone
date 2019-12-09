@@ -19,19 +19,33 @@
         <div class="header-content">
             <div class="row">
                 <h1>Sprouts and Showers</h1>
-                <h2>Choose your plant and location</h2>
                 <div class="banner">
-                    <form id="js-form">
-                        <label>Plant Name: Common or Scientific</label>
+                    <form class="form" id="js-form">
+                        <div class="form--block">
+                            <input class="form--block-text" id="js-search-term-one" type="text">
+                            <label for="js-search-term-one">Plant</label>
+                            <div></div>
+                        </div>
+                        <div class="form--block">
+                            <input class="form--block-text" id="js-search-term-two" type="text">
+                            <label for="js-search-term-two">Location</label>
+                            <div></div>
+                        </div>
+                        <div class="form--block">
+                            <button type="submit" id="js-submit-both-button">Get Growing!</button>
+                        </div>
+                    </form>
+                    <!--<form id="js-form">
+                        <label>Plant Name</label>
                         <br>
                         <input type="text" name="search-term-one" id="js-search-term-one" placeholder="Rose">
                         <br>
-                        <label>Location: Enter City Name and 2 letter State/Country code</label>
+                        <label>Location</label>
                         <br>
                         <input type="text" name="search-term-two" id="js-search-term-two" placeholder="Miami FL">
                         <br>
                         <input class="small button green" type="submit" value="Get your info!" id="js-submit-both-button">
-                    </form>
+                    </form>-->
                     <p id="js-error-message" class="error-message"></p>
                 </div>
             </div>
