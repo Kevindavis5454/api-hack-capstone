@@ -1,3 +1,23 @@
+//Get the Top button:
+mybutton = document.getElementById("topBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "flex";
+    } else {
+        mybutton.style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
 //Convert Time to readable
 function timeConverter(unixTimestamp) {
     let a = new Date(unixTimestamp * 1000);
@@ -8,8 +28,18 @@ function timeConverter(unixTimestamp) {
     let hour = a.getHours();
     let min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
     let sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
-    let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    let time = month + ' ' + date + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
     return time;
+}
+
+function timeConverterOnlyDate(unixTimestamp) {
+    let a = new Date(unixTimestamp * 1000);
+    let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    let year = a.getFullYear();
+    let month = months[a.getMonth()];
+    let date = a.getDate();
+    let newDate = month + ' ' + date + ' ' + year;
+    return newDate;
 }
     /*$('#js-plant-id-value').click(function(e){
         e.preventDefault();
@@ -21,7 +51,10 @@ function timeConverter(unixTimestamp) {
         e.preventDefault();
        let plantNameSearch = $('#js-search-term-one').val();
        let cityNameSearch = $('#js-search-term-two').val();
-       getTrefle(plantNameSearch, cityNameSearch)
+       getTrefle(plantNameSearch, cityNameSearch);
+        document.querySelector('.flex-grid').scrollIntoView({
+            behavior: 'smooth'
+        });
     });
 
 //Ajax call to Trefle Api for Common/Scientific Name Search
@@ -71,12 +104,11 @@ function timeConverter(unixTimestamp) {
                 e.preventDefault();
                 const plantIdSearch = $('.js-plant-id-value').val();
                 getPlantIdSearch(plantIdSearch);
+                document.querySelector('.flex-grid-wiki').scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         }
-
-        $('.spinner.one').fadeOut(10, function(){
-            $('.spinner.one').remove();
-        });
         getCage(cityNameSearch);
     }
 
@@ -136,7 +168,7 @@ function timeConverter(unixTimestamp) {
 
             $('#results-list-two').append(`
         
-        <li><h3>${timeConverter(`${responseJson.daily.data[i].time}`)}</h3><br>
+        <li><h3>${timeConverterOnlyDate(`${responseJson.daily.data[i].time}`)}</h3><br>
             Summary: ${responseJson.daily.data[i].summary}<br>
             Temp. Hi: ${responseJson.daily.data[i].temperatureHigh}&#8457; <br>
             Temp. Low: ${responseJson.daily.data[i].temperatureLow}&#8457;<br>
@@ -229,7 +261,6 @@ function timeConverter(unixTimestamp) {
     indexpageids: 1,
     redirects: 1,
     exchars: 1200,
-    // explaintext: 1,
     exsectionformat: 'plain',
     piprop: 'name|thumbnail|original',
     pithumbsize: 250
@@ -249,59 +280,26 @@ function getWikipediaApi(wikiSearch) {
 
 function displayResultsWiki(responseJson) {
     console.log(responseJson);
-    let pageId = responseJson.query.pageids[0];
-    let searchword = responseJson.query.pages[pageId].title.toLowerCase();
-    let pattern = new RegExp(searchword, 'i');
-    if (responseJson.query.pages[pageId].extract) var info = responseJson.query.pages[pageId].extract.replace(pattern, '<b>' + searchword + '</b>').replace('<span id="References">References</span>', '<p></p>').replace(new RegExp('<p><br /></p>', 'g'), '').replace('External links', 'Click more below for links to:');
-    let thumbnail = responseJson.query.pages[pageId].thumbnail;
-    let original = responseJson.query.pages[pageId].original;
-    let pageimage = responseJson.query.pages[pageId].pageimage;
-    let html = "";
+        $('.wiki').empty();
+    if (responseJson.query.pageids[0] === "-1") {
+        $('.wiki').append(`
+        <p>Sorry! No Wikipedia data for that plant scientific name was found. Please try another plant!</p>
+        `)
+    }else {
 
-    $('.wiki').empty();
-    //If thumbnail is unavailable
-    if (thumbnail === undefined || thumbnail === null) {
-        //Check if extract from is cut off
-        if (info.length < 1000) {
-            info = info.substring(0, info.length - 3)
-            html += info;
-            $('.wiki').append(html);
+        let pageId = responseJson.query.pageids[0];
 
-            //If it is cut, get rid off abbreviated ending
-        } else {
-            info = info.substring(0, info.length - 7)
-            for (var i = 1; i < 6; i++) {
-                if (info.charAt(info.length - i) === '<') {
-                    info = info.substring(0, info.length - i)
-                }
-            }
-            html += info + '...</p>';
-            $('.wiki').append(html);
-        }
-        //If thumbnail is available
-    } else {
-        //Same as above, check if extract is cut off or not
-        if (info.length < 1000) {
-            info = info.substring(0, info.length - 3)
-            html += '<a href="' + original.source + '" data-lity><div class="picWrap"><img class="wikipic" src="' +
-                thumbnail.source + '"><p class="expand"><i class="fa fa-arrows-alt" aria-hidden="true"></i><span class="captions"> &nbsp;' + pageimage.replace(/_/g, ' ').substring(0, pageimage.length - 4) + '</span></div></a>' + info;
-            $('.wiki').append(html);
-        } else {
-            info = info.substring(0, info.length - 7)
-            for (var i = 1; i < 6; i++) {
-                if (info.charAt(info.length - i) === '<') {
-                    info = info.substring(0, info.length - i)
-                }
-            }
-            html += '<a href="' + original.source + '" data-lity><div class="picWrap"><img class="wikipic" src="' +
-                thumbnail.source + '"><p class="expand"><i class="fa fa-arrows-alt" aria-hidden="true"></i><span class="captions"> &nbsp;' + pageimage.replace(/_/g, ' ').substring(0, pageimage.length - 4) + '</span></div></a>' + info + '...</p>';
-            $('.wiki').append(html);
-        }
+        $('.wiki').empty();
+
+        $('.wiki').append('<p><a href="//en.wikipedia.org/wiki/' + responseJson.query.pages[pageId].title + '">More on Wikipedia</a></p>');
+        $('.wiki').append('<hr>');
+
+        $('.wiki').append(`
+            <img src="${responseJson.query.pages[pageId].thumbnail.source}">
+            ${responseJson.query.pages[pageId].extract}
+        `);
     }
-    $('.wiki').append('<hr>');
-    $('.wiki').append('<p class="ext_link"><a href="//en.wikipedia.org/wiki/' + responseJson.query.pages[pageId].title +
-        '" data-lity><i class="fa fa-external-link-square" aria-hidden="true"></i> &nbsp;More on Wikipedia</a></p>');
-}
+    }
 
 
 

@@ -14,7 +14,7 @@ header {
     color: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     background: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/68397/forest-fly-agaric-fog-moss-fliegenpilz.jpg);
     background-size: cover;
@@ -29,7 +29,7 @@ header {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .banner {
@@ -47,6 +47,12 @@ header {
     align-items: center;
 }
 
+#js-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 body {
     font-family: 'Inconsolata', monospace;
@@ -55,7 +61,7 @@ body {
     margin: 0;
     /*font-weight: 300;*/
     font-size: 15px;
-    background: url(https://cdn.pixabay.com/photo/2016/09/05/15/07/concrete-1646788_1280.jpg), no-repeat, center, bottom;
+    background: linear-gradient( to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
     background-size: cover;
     background-attachment: scroll;
     /*color: darkslategray;*/
@@ -64,7 +70,7 @@ body {
 }
 
 ul {
-    height: 450px;
+    height: 550px;
     overflow-y: scroll;
 }
 
@@ -89,7 +95,6 @@ li {
     margin: 2px 40px 2px 2px;
     list-style-type: none;
     overflow-y: scroll;
-    /*box-shadow:inset 5px 5px 40em #000;*/
 }
 
 .flex-grid {
@@ -103,10 +108,16 @@ li {
 
 .wiki {
     background-color: white;
-    width: 80%;
-    height: 100%;
+    width: 90%;
+    height: 550px;
+    overflow-y: scroll;
     /*border: 1px black solid;*/
     margin: 10px 10px 10px 10px;
+    box-shadow: 0 0 10px #656565;
+}
+
+.wiki-banner {
+    text-align: center;
 }
 
 .results-sections {
@@ -114,6 +125,7 @@ li {
     flex: 1;
     /*border: 1px black solid;*/
     text-align: center;
+    box-shadow: 0 0 10px #656565;
 }
 
 .error-message {
@@ -260,6 +272,21 @@ li {
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
 }
+/*Code for Top button */
+#topBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 20px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 5px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
 
 /*Code below this line is for Input Styling*/
 
@@ -353,10 +380,13 @@ input:focus:-ms-input-placeholder {
 
     .flex-grid {
         flex-direction: column;
+        align-items: center;
+
     }
 
     .results-sections {
-        margin: 10px 10px 10px 10px;
+        flex: 1;
+        width: 70%;
     }
 
     h1 {
@@ -373,7 +403,16 @@ input:focus:-ms-input-placeholder {
     }
 
     ul {
-        height: 150px;
+        height: 350px;
+    }
+
+    #trefle-results {
+        margin-top: 15px;
+    }
+
+    .wiki {
+        margin-top: 10px;
+        width: 70%;
     }
 
     li {

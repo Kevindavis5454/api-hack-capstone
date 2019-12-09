@@ -60,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574191554610</updated>
-      <workItem from="1574191555767" duration="100086000" />
+      <workItem from="1574191555767" duration="109084000" />
     </task>
     <task id="LOCAL-00001" summary="Added Trefle API">
       <created>1574271651250</created>
@@ -216,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575772555693</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Added wikipedia api">
+      <created>1575776398143</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1575776398143</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,6 +256,7 @@
     <MESSAGE value="Cleaned up code" />
     <MESSAGE value="Cleaned up code - rewrote in AJAX" />
     <MESSAGE value="Fixed Load Error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Load Error" />
+    <MESSAGE value="Added wikipedia api" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added wikipedia api" />
   </component>
 </project>
