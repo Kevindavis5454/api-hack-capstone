@@ -288,7 +288,6 @@ function displayResultsWiki(responseJson) {
         $('.wiki').append('<p><a href="//en.wikipedia.org/wiki/' + responseJson.query.pages[pageId].title + '">More on Wikipedia</a></p>');
         $('.wiki').append('<hr>');
         $('.wiki').append(`
-            <img src="${responseJson.query.pages[pageId].thumbnail.source}">
             ${responseJson.query.pages[pageId].extract}
         `);
     }
