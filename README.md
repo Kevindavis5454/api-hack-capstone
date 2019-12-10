@@ -8,6 +8,6 @@ Technologies used: HTML5, CSS, Javascript, and Jquery.
 
 ScreenShots: 
 
-![Landing Page](/sprouts-and-showers/assets/Screen%20Shot%202019-12-09%20at%207.57.00%20PM.png?raw=true "Landing Page")
+![Landing Page](Kevindavis5454/sprouts-and-showers/assets/Screen%20Shot%202019-12-09%20at%207.57.00%20PM.png?raw=true "Landing Page")
 
-![Results Page](/sprouts-and-showers/assets/Screen%20Shot%202019-12-09%20at%207.56.44%20PM.png?raw=true "Results Page")
+![Results Page](Kevindavis5454/sprouts-and-showers/assets/Screen%20Shot%202019-12-09%20at%207.56.44%20PM.png?raw=true "Results Page")
