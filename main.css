@@ -2,7 +2,294 @@
     box-sizing: border-box;
 }
 
+html {
+    background: #9a9a9a;
+}
+
+header {
+    font-family: 'Merienda One', cursive;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/68397/forest-fly-agaric-fog-moss-fliegenpilz.jpg);
+    background-size: cover;
+    background-position: 15% 0%;
+    background-attachment: scroll;
+    padding: 20px 0;
+    height: 100vh;
+}
+
+.header-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.banner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#js-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+body {
+    font-family: 'Inconsolata', monospace;
+    color: black;
+    margin: 0;
+    font-size: 15px;
+    background: linear-gradient( to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+ul {
+    height: 550px;
+    overflow-y: scroll;
+}
+
+label {
+    font-family: 'Merienda One', cursive;
+}
+
+h2 {
+    font-family: 'Merienda One', cursive;
+}
+
+h3 {
+    font-family: 'Merienda One', cursive;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+li {
+    margin: 2px 40px 2px 2px;
+    list-style-type: none;
+    overflow-y: scroll;
+}
+
+p {
+    text-align: center;
+}
+
+.spinner.one {
+    width: 100%;
+}
+
+.flex-grid {
+    display: flex;
+}
+
+.flex-grid-wiki{
+    display: flex;
+    justify-content: center;
+}
+
+.wiki-results-div {
+    background-color: white;
+    width: 90%;
+    height: 550px;
+    overflow-y: scroll;
+    margin: 10px 10px 10px 10px;
+    box-shadow: 0 0 10px #656565;
+}
+.wiki-results-div h2 {
+    text-align: center;
+}
+
+.wiki-banner {
+    text-align: center;
+}
+
+.results-sections {
+    background-color: white;
+    flex: 1;
+    text-align: center;
+    box-shadow: 0 0 10px #656565;
+}
+
+.error-message {
+    color: red;
+}
+
+.hidden {
+    display: none;
+}
+
+#plant-picture {
+    max-width: 175px;
+    max-height: 175px;
+}
+
+/*Code below is for the loading animations*/
+
+@keyframes spinner {
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    }
+}
+.spinner {
+    height: 50vh;
+    opacity: 1;
+    position: relative;
+    transition: opacity linear 0.1s;
+}
+.spinner::before {
+    animation: 2s linear infinite spinner;
+    border: solid 3px #eee;
+    border-bottom-color: #EF6565;
+    border-radius: 50%;
+    content: "";
+    height: 40px;
+    left: 50%;
+    opacity: inherit;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    transform-origin: center;
+    width: 40px;
+    will-change: transform;
+}
+
+@media screen and (min-width: 0px) and (max-width: 650px) {
+
+    .form {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .form--block {
+        width: 49%;
+    }
+    .form--block:last-child {
+        width: 100%;
+    }
+
+    .flex-grid {
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .results-sections {
+        flex: 1;
+        width: 70%;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: medium;
+    }
+
+    h2 {
+        font-size: small;
+    }
+
+    h3 {
+        font-size: small;
+    }
+
+    ul {
+        height: 350px;
+    }
+
+    #trefle-results {
+        margin-top: 15px;
+    }
+
+    .wiki {
+        margin-top: 10px;
+        width: 70%;
+    }
+
+    li {
+        font-size: smaller;
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    label {
+        text-align: center;
+    }
+
+    input {
+        font-size: smaller;
+    }
+}
+    @media screen and (min-width: 651px) and (max-width: 1099px) {
+
+        .form--block {
+            width: 32%;
+        }
+        .form--block:last-child {
+            width: 32%;
+        }
+
+        #nav-mobile {
+            display: none;
+        }
+
+        #trefle-results {
+            margin: 40px 15px 40px 40px;
+        }
+
+        #darksky-results {
+            margin: 40px 40px 40px 15px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    }
+
+    @media screen and (min-width: 1100px) {
+
+        #nav-mobile {
+            display: none;
+        }
+
+        #trefle-results {
+            margin: 25px 15px 40px 40px;
+        }
+
+        #darksky-results {
+            margin: 25px 40px 40px 15px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    }
+
 /*Code below for input fields in header */
+input {
+    font-family: 'Merienda One', cursive;
+}
+
 .form {
     width: 80vw;
     display: flex;
@@ -14,7 +301,7 @@
 }
 
 .form--block {
-    width: 100%;
+    width: 80%;
     height: 60px;
     margin-bottom: 20px;
     position: relative;
@@ -91,178 +378,41 @@
     outline: 0;
 }
 
-html {
-    background: #9a9a9a;
+/*Code below is for button fade */
+.fade {
+    animation: fade 3s 2s forwards;
+    animation-iteration-count: 5;
 }
 
-header {
-    font-family: 'Merienda One', cursive;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    background: linear-gradient( to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)), url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/68397/forest-fly-agaric-fog-moss-fliegenpilz.jpg);
-    background-size: cover;
-    background-position: 15% 0%;
-    background-attachment: scroll;
-    padding: 20px 0;
-    /*box-shadow: 0 0 10px black;*/
-    height: 100vh;
-}
-
-.header-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.banner {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-}
-
-.row {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#js-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-body {
-    font-family: 'Inconsolata', monospace;
-    color: black;
-    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
-    margin: 0;
-    /*font-weight: 300;*/
-    font-size: 15px;
-    background: linear-gradient( to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-    background-size: cover;
-    background-attachment: scroll;
-    /*color: darkslategray;*/
-    /*overflow: hidden;*/
-    /*background-color: #ebecee;*/
-}
-
-ul {
-    height: 550px;
-    overflow-y: scroll;
-}
-
-label {
-    font-family: 'Merienda One', cursive;
-}
-
-h2 {
-    font-family: 'Merienda One', cursive;
-}
-
-h3 {
-    font-family: 'Merienda One', cursive;
-}
-
-footer {
-    display: flex;
-    justify-content: center;
-}
-
-li {
-    margin: 2px 40px 2px 2px;
-    list-style-type: none;
-    overflow-y: scroll;
-}
-
-.flex-grid {
-    display: flex;
-}
-
-.flex-grid-wiki{
-    display: flex;
-    justify-content: center;
-}
-
-.wiki {
-    background-color: white;
-    width: 90%;
-    height: 550px;
-    overflow-y: scroll;
-    /*border: 1px black solid;*/
-    margin: 10px 10px 10px 10px;
-    box-shadow: 0 0 10px #656565;
-}
-
-.wiki-banner {
-    text-align: center;
-}
-
-.results-sections {
-    background-color: white;
-    flex: 1;
-    /*border: 1px black solid;*/
-    text-align: center;
-    box-shadow: 0 0 10px #656565;
-}
-
-.error-message {
-    color: red;
-}
-
-.hidden {
-    display: none;
-}
-
-#plant-picture {
-    max-width: 175px;
-    max-height: 175px;
-}
-
-/*#darksky-results, #trefle-results {
-    box-shadow:inset 5px 5px 40em #000;
-}*/
-
-
-/*Code below is for the loading animations*/
-
-@keyframes spinner {
-    0% {
-        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+@keyframes fade {
+    25% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.25;
     }
     100% {
-        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+        opacity: 1;
     }
 }
-.spinner {
-    height: 50vh;
-    opacity: 1;
-    position: relative;
-    transition: opacity linear 0.1s;
-}
-.spinner::before {
-    animation: 2s linear infinite spinner;
-    border: solid 3px #eee;
-    border-bottom-color: #EF6565;
-    border-radius: 50%;
-    content: "";
-    height: 40px;
-    left: 50%;
-    opacity: inherit;
-    position: absolute;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    transform-origin: center;
-    width: 40px;
-    will-change: transform;
+
+/*Code for Top button */
+#topBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 20px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 5px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
 }
 
 /*Code below this line is for button styling*/
@@ -358,226 +508,3 @@ li {
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
 }
-/*Code for Top button */
-#topBtn {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed/sticky position */
-    bottom: 20px; /* Place the button at the bottom of the page */
-    right: 20px; /* Place the button 30px from the right */
-    z-index: 99; /* Make sure it does not overlap */
-    border: none; /* Remove borders */
-    outline: none; /* Remove outline */
-    color: white; /* Text color */
-    cursor: pointer; /* Add a mouse pointer on hover */
-    padding: 5px; /* Some padding */
-    border-radius: 10px; /* Rounded corners */
-    font-size: 18px; /* Increase font size */
-}
-
-/*Code below this line is for Input Styling*/
-
-input {
-
-    border: 2px solid rgba(255, 255, 255, .5);
-    font-size: medium;
-    padding: 5px 10px 7.5px;
-    color: rgba(255, 255, 255, .5);
-    border-radius: .25em;
-    background: transparent;
-    transition: all .100s;
-}
-
-input {
-    font-family: 'Merienda One', cursive;
-}
-
-input:focus{
-    outline:none;
-    color:rgba(255,255,255,.75);
-    border-color:rgba(255,255,255,.75);
-}
-
-input.keyup {
-    color:white;
-    border-color:white;
-    text-shadow:0 0 .125em white;
-    box-shadow:0 0 .25em white,inset 0 0 .25em white;
-}
-
-canvas {
-    position:absolute;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    pointer-events:none;
-}
-
-::-webkit-input-placeholder {
-    color: rgba(255,255,255,.5);
-    text-shadow:0 0 .125em transparent;
-    transition:all .25s;
-}
-input:focus::-webkit-input-placeholder {
-    opacity:.5;
-}
-
-::-moz-placeholder {
-    color: rgba(255,255,255,.5);
-    text-shadow:0 0 .125em transparent;
-    transition:all .25s;
-}
-input:focus::-moz-placeholder {
-    opacity:.5;
-}
-
-:-ms-input-placeholder {
-    color: rgba(255,255,255,.5);
-    text-shadow:0 0 .125em transparent;
-    transition:all .25s;
-}
-input:focus:-ms-input-placeholder {
-    opacity:.5;
-}
-
-/*Code below is for header animation */
-
-.fade {
-    animation: fade 3s 2s forwards;
-    animation-iteration-count: 5;
-}
-
-@keyframes fade {
-    25% {
-        opacity: 0.25;
-    }
-    50% {
-        opacity: 1;
-    }
-    75% {
-        opacity: 0.25;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@media screen and (min-width: 0px) and (max-width: 500px) {
-
-    .form {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    .form--block {
-        width: 49%;
-    }
-    .form--block:last-child {
-        width: 100%;
-    }
-
-    .flex-grid {
-        flex-direction: column;
-        align-items: center;
-
-    }
-
-    .results-sections {
-        flex: 1;
-        width: 70%;
-    }
-
-    h1 {
-        text-align: center;
-        font-size: medium;
-    }
-
-    h2 {
-        font-size: small;
-    }
-
-    h3 {
-        font-size: small;
-    }
-
-    ul {
-        height: 350px;
-    }
-
-    #trefle-results {
-        margin-top: 15px;
-    }
-
-    .wiki {
-        margin-top: 10px;
-        width: 70%;
-    }
-
-    li {
-        font-size: smaller;
-    }
-
-    .mobile {
-        display: none;
-    }
-
-    label {
-        text-align: center;
-    }
-
-    input {
-        font-size: smaller;
-    }
-
-}
-    @media screen and (min-width: 501px) and (max-width: 1099px) {
-
-        .form--block {
-            width: 32%;
-        }
-        .form--block:last-child {
-            width: 32%;
-        }
-
-        #nav-mobile {
-            display: none;
-        }
-
-        #trefle-results {
-            margin: 40px 15px 40px 40px;
-        }
-
-        #darksky-results {
-            margin: 40px 40px 40px 15px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        /*ul {
-            height: 400px;
-        }*/
-    }
-
-    @media screen and (min-width: 1100px) {
-
-        #nav-mobile {
-            display: none;
-        }
-
-        #trefle-results {
-            margin: 25px 15px 40px 40px;
-        }
-
-        #darksky-results {
-            margin: 25px 40px 40px 15px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        /*ul {
-            height: 400px;
-        }*/
-    }

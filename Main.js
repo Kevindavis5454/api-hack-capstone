@@ -60,9 +60,7 @@ function timeConverterOnlyDate(unixTimestamp) {
        let plantNameSearch = $('#js-search-term-one').val();
        let cityNameSearch = $('#js-search-term-two').val();
        getTrefle(plantNameSearch, cityNameSearch);
-        document.querySelector('.flex-grid').scrollIntoView({
-            behavior: 'smooth'
-        });
+        $('.spinner.one').show();
     });
 
 //Ajax call to Trefle Api for Common/Scientific Name Search
@@ -71,7 +69,6 @@ function timeConverterOnlyDate(unixTimestamp) {
         let proxyUrl = 'https://cors-anywhere.herokuapp.com/',
             targetUrl = url;
         let trefleMainSearch = proxyUrl + targetUrl;
-
         $.getJSON(trefleMainSearch, function(responseJson){
             displayResultsTrefle(cityNameSearch, responseJson);
         });
@@ -79,13 +76,10 @@ function timeConverterOnlyDate(unixTimestamp) {
 
 //Display Trefle Data for Common/Scientific Name Search
     function displayResultsTrefle(cityNameSearch, responseJson) {
-
         console.log(responseJson);
         $('#js-error-message').remove();
         $('#results-list-one').empty();
-
         for (let i = 0; i < responseJson.length; i++) {
-
             if (responseJson[i].common_name === null) {
                 $('#results-list-one').append(`
         <li><h3>Common Name data not found</h3>
@@ -103,15 +97,17 @@ function timeConverterOnlyDate(unixTimestamp) {
         </li>
         `)
             }
-        } ;
-
+        };
+        $('.spinner.one').fadeOut(10, function(){
+            $('.spinner.one').hide();
+        });
         watchPlantIdSearch();
-
         function watchPlantIdSearch() {
             $('.js-plant-id-submit').on('click', function (e) {
                 e.preventDefault();
                 const plantIdSearch = $('.js-plant-id-value').val();
                 getPlantIdSearch(plantIdSearch);
+                $('.spinner.two').show();
                 document.querySelector('.flex-grid-wiki').scrollIntoView({
                     behavior: 'smooth'
                 });
@@ -133,7 +129,6 @@ function timeConverterOnlyDate(unixTimestamp) {
         console.log(responseJson);
         $('#js-error-message').remove();
         $('#results-list-two').empty();
-
         $('#results-list-two').append(`
     <input class="small button green fade hidden" type="submit" value="${responseJson.results[0].geometry.lat},${responseJson.results[0].geometry.lng}" id="js-coordinate-value">
     
@@ -157,7 +152,6 @@ function timeConverterOnlyDate(unixTimestamp) {
  //Display DarkSky API Data
     function displayResultsDarkSky(responseJson) {
         console.log(responseJson);
-
         $('#results-list-two').append(`
     <li><h3>Current Weather: </h3><br>
         Temperature: ${responseJson.currently.temperature}&#8457;<br>
@@ -171,12 +165,9 @@ function timeConverterOnlyDate(unixTimestamp) {
         Summary: ${responseJson.daily.summary}<br>
         </li>
     `)
-
         for (let i=0 ; i < responseJson.daily.data.length ; i++) {
-
             $('#results-list-two').append(`
-        
-        <li><h3>${timeConverterOnlyDate(`${responseJson.daily.data[i].time}`)}</h3><br>
+                <li><h3>${timeConverterOnlyDate(`${responseJson.daily.data[i].time}`)}</h3><br>
             Summary: ${responseJson.daily.data[i].summary}<br>
             Temp. Hi: ${responseJson.daily.data[i].temperatureHigh}&#8457; <br>
             Temp. Low: ${responseJson.daily.data[i].temperatureLow}&#8457;<br>
@@ -189,6 +180,7 @@ function timeConverterOnlyDate(unixTimestamp) {
             UV Index: ${responseJson.daily.data[i].uvIndex} Highest Index Time: ${timeConverter(`${responseJson.daily.data[i].uvIndexTime}`)}
             </li>
         `)
+            pageReadyShowContent();
         }
     }
 
@@ -200,9 +192,7 @@ function timeConverterOnlyDate(unixTimestamp) {
         let trefleIdSearch = proxyUrl + targetUrl;
         $.getJSON(trefleIdSearch, function (responseJson) {
             displayResultsPlantId(responseJson)
-
         })
-
     }
 
 //Display Trefle ID Search Data
@@ -260,7 +250,6 @@ function timeConverterOnlyDate(unixTimestamp) {
         let wikiSearch = `${responseJson.scientific_name}`
         getWikipediaApi(wikiSearch);
     }
-
     let wikiParams = {
     origin: '*',
     action: 'query',
@@ -274,40 +263,43 @@ function timeConverterOnlyDate(unixTimestamp) {
     pithumbsize: 250
 };
 //Ajax Call to get Wikipedia API Data
-
 function getWikipediaApi(wikiSearch) {
     wikiParams.titles = wikiSearch;
     let url = 'https://en.wikipedia.org/w/api.php';
         $.getJSON(url, wikiParams, function(responseJson) {
             displayResultsWiki(responseJson)
         })
-
 }
 
 //Display Wiki Search Data
-
 function displayResultsWiki(responseJson) {
     console.log(responseJson);
+    $('.spinner.two').fadeOut(10, function(){
+        $('.spinner.one').hide();
+    });
         $('.wiki').empty();
     if (responseJson.query.pageids[0] === "-1") {
         $('.wiki').append(`
         <p>Sorry! No Wikipedia data for that plant scientific name was found. Please try another plant!</p>
         `)
     }else {
-
         let pageId = responseJson.query.pageids[0];
-
         $('.wiki').empty();
-
         $('.wiki').append('<p><a href="//en.wikipedia.org/wiki/' + responseJson.query.pages[pageId].title + '">More on Wikipedia</a></p>');
         $('.wiki').append('<hr>');
-
         $('.wiki').append(`
             <img src="${responseJson.query.pages[pageId].thumbnail.source}">
             ${responseJson.query.pages[pageId].extract}
         `);
     }
     }
+//Display Main content after API data is loaded
+    function pageReadyShowContent() {
+        $('#content').show();
+        document.querySelector('.flex-grid').scrollIntoView({
+            behavior: 'smooth'
+        });
+ }
 
 
 

@@ -9,12 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=Inconsolata%7cMerienda+One&display=swap" rel="stylesheet" type="text/css">
     <title>Sprout and Shower</title>
     <link rel="stylesheet" href="main.css">
-
-
-
 </head>
 <body>
-
     <header id="header">
         <div class="header-content">
             <div class="row">
@@ -35,28 +31,17 @@
                             <button type="submit" id="js-submit-both-button">Get Growing!</button>
                         </div>
                     </form>
-                    <!--<form id="js-form">
-                        <label>Plant Name</label>
-                        <br>
-                        <input type="text" name="search-term-one" id="js-search-term-one" placeholder="Rose">
-                        <br>
-                        <label>Location</label>
-                        <br>
-                        <input type="text" name="search-term-two" id="js-search-term-two" placeholder="Miami FL">
-                        <br>
-                        <input class="small button green" type="submit" value="Get your info!" id="js-submit-both-button">
-                    </form>-->
                     <p id="js-error-message" class="error-message"></p>
                 </div>
             </div>
         </div>
         <div class="spinner one hidden"></div>
     </header>
-    <main role="main" aria-live="assertive">
+    <main role="main" aria-live="assertive" class="hidden" id="content">
         <div class="flex-grid">
             <div class="results-sections" id="trefle-results">
                 <section id="results-one">
-                    <h2 class="mobile">Search Results for Common/Scientific Name</h2>
+                    <h2 class="mobile">Common / Scientific Name Results</h2>
                     <ul id="results-list-one">
                     </ul>
                 </section>
@@ -64,30 +49,30 @@
             <br>
             <div class="results-sections" id="darksky-results">
                 <section id="results-two">
-                    <h2 class="mobile">Search Results Location</h2>
+                    <h2 class="mobile">Weather Results</h2>
                     <ul id="results-list-two">
                     </ul>
                     <br>
-                    <div class="spinner three hidden"></div>
                 </section>
             </div>
         </div>
         <div class="flex-grid-wiki">
-            <div class="wiki">
+            <div class="wiki-results-div">
+                <h2 class="mobile">Wikipedia Results</h2>
+                <div class="spinner two hidden"></div>
+                <section class="wiki">
+                </section>
             </div>
         </div>
         <button onclick="topFunction()" id="topBtn" class="button small green" title="Go to top">Top</button>
     </main>
 <footer>
-    <p>Powered by:</p>
-
+    <p>Powered by: Trefle, OpenCage GeoCoder, Dark Sky, and Wikipedia</p>
 </footer>
-
 <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
-    <script src="Main.js"></script>
-
+<script src="Main.js"></script>
 </body>
 </html>
