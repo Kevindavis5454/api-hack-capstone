@@ -85,15 +85,55 @@ function getTrefle(plantNameSearch, cityNameSearch) {
                 $('#js-error-message').text(`Something went wrong: ${err.message}`);
             });
 }
+function resultsHolding(cityNameSearch, responseJson) {
+    console.log(responseJson);
+    $('#results-hold').empty();
+    for (let i = 0; i < responseJson.length; i++) {
+        if (responseJson[i].common_name === null) {
+            $('.results-hold').append(`
+        <li><h3>Common Name data not found</h3>
+        <p>${responseJson[i].scientific_name}</p>
+        <form class="js-plant-id-submit"><Label>Plant Id</Label>
+        <input type="submit" value="${responseJson[i].id}" class="js-plant-id-value-two small button green fade"></form>
+        </li>
+        `)
+        } else {
+            $('.results-hold').append(`
+        <li><h3>${responseJson[i].common_name}</h3>
+        <p>${responseJson[i].scientific_name}</p>
+        <form class="js-plant-id-submit"><Label>Plant Id</Label>
+        <input type="submit" value="${responseJson[i].id}" class="js-plant-id-value small button green fade"></form>
+        </li>
+        `)
+        }
+    };
+    watchPlantIdSearchTwo();
+    function watchPlantIdSearchTwo() {
+        $('.js-plant-id-submit').on('click', function (e) {
+            e.preventDefault();
+            let plantIdSearch = $('.js-plant-id-value').val();
+            getPlantIdSearch(plantIdSearch);
+            $('.wiki').empty();
+            $('.results-list-one').empty();
+            $('.spinner.two').show();
+            $('.results-hold').hide();
+            $('.results-list-one').show();
+            document.querySelector('.flex-grid-wiki').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    }
+}
 
 //Display Trefle Data for Common/Scientific Name Search
 function displayResultsTrefle(cityNameSearch, responseJson) {
     console.log(responseJson);
+    resultsHolding(cityNameSearch, responseJson);
     $('#js-error-message').remove();
-    $('#results-list-one').empty();
+    $('.results-list-one').empty();
     for (let i = 0; i < responseJson.length; i++) {
         if (responseJson[i].common_name === null) {
-            $('#results-list-one').append(`
+            $('.results-list-one').append(`
         <li><h3>Common Name data not found</h3>
         <p>${responseJson[i].scientific_name}</p>
         <form class="js-plant-id-submit"><Label>Plant Id</Label>
@@ -101,7 +141,7 @@ function displayResultsTrefle(cityNameSearch, responseJson) {
         </li>
         `)
         } else {
-            $('#results-list-one').append(`
+            $('.results-list-one').append(`
         <li><h3>${responseJson[i].common_name}</h3>
         <p>${responseJson[i].scientific_name}</p>
         <form class="js-plant-id-submit"><Label>Plant Id</Label>
@@ -114,7 +154,7 @@ function displayResultsTrefle(cityNameSearch, responseJson) {
     function watchPlantIdSearch() {
         $('.js-plant-id-submit').on('click', function (e) {
             e.preventDefault();
-            const plantIdSearch = $('.js-plant-id-value').val();
+            let plantIdSearch = $('.js-plant-id-value').val();
             getPlantIdSearch(plantIdSearch);
             $('.wiki').empty();
             $('.spinner.two').show();
@@ -232,59 +272,67 @@ function getPlantIdSearch(plantIdSearch) {
 //Display Trefle ID Search Data
 function displayResultsPlantId(responseJson) {
     console.log(responseJson);
-    $('#results-list-one').empty();
+    $('.results-list-one').empty();
     if (responseJson.common_name !== null) {
-        $('#results-list-one').append(`
+        $('.results-list-one').append(`
         <li><h3>Common Name: ${responseJson.common_name}</h3></li>
         `);
     }
-    $('#results-list-one').append(`
+    $('.results-list-one').append(`
         <li>Plant ID: ${responseJson.id}</li>
     `)
     if (responseJson.scientific_name !== null) {
-        $('#results-list-one').append(`
+        $('.results-list-one').append(`
         <li><h4>Scientific Name: ${responseJson.scientific_name}</h4></li>
         `);
     }
     if (responseJson.division === null || responseJson.class === null || responseJson.order === null || responseJson.family === null || responseJson.genus === null ) {
-        $('#results-list-one').append(`
+        $('.results-list-one').append(`
         <li> Division/Class/Order/Family/Genus Data not found</li>
         `)
     }
     else {
-        $('#results-list-one').append(`
+        $('.results-list-one').append(`
         <li>Division: ${responseJson.division.name} Class: ${responseJson.class.name}  Order: ${responseJson.order.name} Family: ${responseJson.family.name} Genus: ${responseJson.genus.name}</li>
     `)
     }
     if (responseJson.duration === null){
-        $('#results-list-one').append(`
+        $('.results-list-one').append(`
         <li>Plant Duration Data not found</li>
         `)
     } else {
-        $('#results-list-one').append(`
+        $('.results-list-one').append(`
         <li>Plant Duration: ${responseJson.duration}</li>
     `)
     }
     if (responseJson.images !== null) {
         for (let i = 0; i < responseJson.images.length; i++) {
-            $('#results-list-one').append(`
+            $('.results-list-one').append(`
         <li><img id="plant-picture" src="${responseJson.images[i].url}" alt="Flower Picture"></li>
         `);
         }
     }
     if (responseJson.main_species.growth.temperature_minimum.deg_f === null) {
-        $('#results-list-one').append(`
+        $('.results-list-one').append(`
             <li>Growth temperature minimum data not found</li>
         `);
     }else {
-        $('#results-list-one').append(`
+        $('.results-list-one').append(`
             <li>Growth Temperature Minimum: ${responseJson.main_species.growth.temperature_minimum.deg_f}</li>
         `)
     }
-    $('#results-list-one').append(`
+    $('.results-list-one').append(`
+    <br>
+     <button class="button small green" id="previous-results-button" title="Go to previous results">Previous Results</button>
     <br>
     <button onclick="scrollToTop()" class="button small green" title="Go to top">Search Again</button>
     `)
+    $('#previous-results-button').click(function(e){
+        e.preventDefault();
+        $('.results-list-one').hide();
+        $('.results-list-one').empty();
+        $('.results-hold').show();
+    });
     let wikiSearch = `${responseJson.scientific_name}`;
     getWikipediaApi(wikiSearch);
 }

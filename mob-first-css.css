@@ -2,6 +2,8 @@
     box-sizing: border-box;
 }
 
+
+
 html {
     background: #9a9a9a;
 }
@@ -242,7 +244,7 @@ input {
     width: 100%;
     position: absolute;
     bottom: 0;
-    height: 70%;
+    height: 50%;
     background: transparent;
     border: 0;
     outline: 0;
