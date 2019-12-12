@@ -346,9 +346,6 @@ function displayResultsWiki(responseJson) {
         $('.spinner.one').hide();
     });
     $('.wiki').empty();
-    $('.wiki').append(`
-        <button onclick="scrollToTop()" class="button small green" title="Go to top">Search Again</button>
-        `);
     if (responseJson.query.pageids[0] === "-1") {
         $('.wiki').append(`
         <p>Sorry! No Wikipedia data for that plant scientific name was found. Please try another plant!</p>
@@ -357,11 +354,6 @@ function displayResultsWiki(responseJson) {
         let pageId = responseJson.query.pageids[0];
         $('.wiki').empty();
         $('.wiki').append('<p><a href="//en.wikipedia.org/wiki/' + responseJson.query.pages[pageId].title + '">More on Wikipedia</a></p>');
-        $('.wiki').append(`
-        <button class="button small green" id="previous-results-button-two" title="Go to previous results">Previous Results</button>
-        <br>
-        <button onclick="scrollToTop()" class="button small green" title="Go to top">Search Again</button>
-        `);
         $('#previous-results-button-two').click(function(e){
             e.preventDefault();
             $('.results-hold').addClass('hidden');
