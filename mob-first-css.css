@@ -61,12 +61,16 @@ body {
 }
 
 ul {
-    height: 550px;
+    height: 350px;
     overflow-y: scroll;
 }
 
 label {
     font-family: 'Merienda One', cursive;
+}
+
+h1 {
+    text-align: center;
 }
 
 h2 {
@@ -98,6 +102,8 @@ p {
 
 .flex-grid {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .flex-grid-wiki{
@@ -105,9 +111,24 @@ p {
     justify-content: center;
 }
 
+#trefle-results {
+    margin-top: 15px;
+}
+
+.wiki {
+    margin-top: 10px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .wiki-results-div {
     background-color: white;
-    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
     height: 550px;
     overflow-y: scroll;
     margin: 10px 10px 10px 10px;
@@ -124,6 +145,7 @@ p {
 .results-sections {
     background-color: white;
     flex: 1;
+    width: 70%;
     text-align: center;
     box-shadow: 0 0 10px #656565;
 }
@@ -133,6 +155,10 @@ p {
 }
 
 .hidden {
+    display: none;
+}
+
+.mobile {
     display: none;
 }
 
@@ -174,137 +200,28 @@ p {
     will-change: transform;
 }
 
-@media screen and (min-width: 0px) and (max-width: 650px) {
-
-    .form {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    .form--block {
-        width: 49%;
-    }
-    .form--block:last-child {
-        width: 100%;
-    }
-
-    .flex-grid {
-        flex-direction: column;
-        align-items: center;
-
-    }
-
-    .results-sections {
-        flex: 1;
-        width: 70%;
-    }
-
-    h1 {
-        text-align: center;
-        font-size: medium;
-    }
-
-    h2 {
-        font-size: small;
-    }
-
-    h3 {
-        font-size: small;
-    }
-
-    ul {
-        height: 350px;
-    }
-
-    #trefle-results {
-        margin-top: 15px;
-    }
-
-    .wiki {
-        margin-top: 10px;
-        width: 70%;
-    }
-
-    li {
-        font-size: smaller;
-    }
-
-    .mobile {
-        display: none;
-    }
-
-    label {
-        text-align: center;
-    }
-
-    input {
-        font-size: smaller;
-    }
-}
-    @media screen and (min-width: 651px) and (max-width: 1099px) {
-
-        .form--block {
-            width: 32%;
-        }
-        .form--block:last-child {
-            width: 32%;
-        }
-
-        #nav-mobile {
-            display: none;
-        }
-
-        #trefle-results {
-            margin: 40px 15px 40px 40px;
-        }
-
-        #darksky-results {
-            margin: 40px 40px 40px 15px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-    }
-
-    @media screen and (min-width: 1100px) {
-
-        #nav-mobile {
-            display: none;
-        }
-
-        #trefle-results {
-            margin: 25px 15px 40px 40px;
-        }
-
-        #darksky-results {
-            margin: 25px 40px 40px 15px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-    }
-
 /*Code below for input fields in header */
 input {
     font-family: 'Merienda One', cursive;
 }
-
 .form {
     width: 80vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+
     justify-content: space-between;
     align-items: center;
     align-content: center;
 
 }
-
 .form--block {
-    width: 80%;
+    width: 80vw;
     height: 60px;
     margin-bottom: 20px;
     position: relative;
+}
+.form--block:last-child {
+    width: 80vw;
 }
 .form--block div {
     content: '';
@@ -452,7 +369,6 @@ input {
 }
 
 .button{
-    /*display: inline-block;*/
     zoom: 1;
     padding: 6px 20px;
     margin: 0;
@@ -507,4 +423,63 @@ input {
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .3) inset;
+}
+
+@media screen and (min-width: 480px) {
+
+    .form--block {
+        width: 80vw;
+    }
+
+    .flex-grid {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    ul {
+        height: 350px;
+    }
+    .results-sections{
+        height: 425px;
+    }
+
+    #trefle-results {
+        margin: 40px 50px 40px 40px;
+    }
+
+    #darksky-results {
+        margin: 40px 40px 40px 50px;
+    }
+    .mobile {
+        display: none;
+    }
+}
+
+@media screen and (min-width:800px) {
+
+    .form--block {
+        width: 80vw;
+    }
+
+    .form {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    #trefle-results {
+        margin: 25px 15px 40px 40px;
+    }
+
+    #darksky-results {
+        margin: 25px 40px 40px 15px;
+    }
+    ul {
+        height: 550px;
+    }
+    .results-sections{
+        height: 625px;
+    }
+    .mobile {
+        display: contents;
+    }
 }

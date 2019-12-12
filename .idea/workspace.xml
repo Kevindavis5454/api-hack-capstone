@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fe93f5f-5945-4f8f-bf9f-6b7614dbbd10" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/mainApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/mob-first-css.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -58,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574191554610</updated>
-      <workItem from="1574191555767" duration="118097000" />
+      <workItem from="1574191555767" duration="133186000" />
     </task>
     <task id="LOCAL-00001" summary="Added Trefle API">
       <created>1574271651250</created>
@@ -277,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575947706485</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fixed Js issue">
+      <created>1575948085077</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1575948085077</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,6 +323,7 @@
     <MESSAGE value="Added wikipedia api" />
     <MESSAGE value="Added CSS" />
     <MESSAGE value="Added Readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Readme" />
+    <MESSAGE value="Fixed Js issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Js issue" />
   </component>
 </project>
