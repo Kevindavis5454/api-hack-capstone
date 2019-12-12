@@ -57,7 +57,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574191554610</updated>
-      <workItem from="1574191555767" duration="147554000" />
+      <workItem from="1574191555767" duration="148004000" />
     </task>
     <task id="LOCAL-00001" summary="Added Trefle API">
       <created>1574271651250</created>
@@ -353,7 +353,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576192895925</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Added Features">
+      <created>1576193287300</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1576193287300</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
