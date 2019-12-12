@@ -358,8 +358,18 @@ function displayResultsWiki(responseJson) {
         $('.wiki').empty();
         $('.wiki').append('<p><a href="//en.wikipedia.org/wiki/' + responseJson.query.pages[pageId].title + '">More on Wikipedia</a></p>');
         $('.wiki').append(`
+        <button class="button small green" id="previous-results-button-two" title="Go to previous results">Previous Results</button>
+        <br>
         <button onclick="scrollToTop()" class="button small green" title="Go to top">Search Again</button>
         `);
+        $('#previous-results-button-two').click(function(e){
+            e.preventDefault();
+            $('.results-hold').addClass('hidden');
+            $('.results-list-one').removeClass('hidden');
+            document.querySelector('.flex-grid').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
         $('.wiki').append('<hr>');
         $('.wiki').append(`
             ${responseJson.query.pages[pageId].extract}
