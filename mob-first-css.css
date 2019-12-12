@@ -250,7 +250,7 @@ input {
     width: 100%;
     position: absolute;
     bottom: 0;
-    height: 50%;
+    height: 90%;
     background: transparent;
     border: 0;
     outline: 0;
@@ -461,6 +461,10 @@ input {
     .mobile {
         display: none;
     }
+
+    .form--block-text {
+        height: 50%;
+    }
 }
 
 @media screen and (min-width:800px) {
@@ -489,5 +493,8 @@ input {
     }
     .mobile {
         display: contents;
+    }
+    .form--block-text {
+        height: 50%;
     }
 }
