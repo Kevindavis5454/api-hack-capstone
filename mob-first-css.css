@@ -118,6 +118,7 @@ p {
 }
 
 .wiki {
+    font-size: 80%;
     margin-top: 10px;
     width: 70%;
     display: flex;
