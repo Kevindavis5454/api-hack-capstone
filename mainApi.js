@@ -114,7 +114,7 @@ function displayResultsTrefle(cityNameSearch, responseJson) {
     };
     watchPlantIdSearch();
     function watchPlantIdSearch() {
-        $('input').click(function(e) {
+        $('.js-plant-id-value').click(function(e) {
             e.preventDefault();
             let plantIdSearch = $(this).val();
             getPlantIdSearch(plantIdSearch);
@@ -238,6 +238,15 @@ function getPlantIdSearch(plantIdSearch) {
 //Display Trefle ID Search Data
 function displayResultsPlantId(responseJson) {
     console.log(responseJson);
+    $('.results-hold').append(`
+    <li>
+    <br>
+    <button class="button small green" id="previous-results-button" title="Go to previous results">Previous Results</button>
+    <br>
+    <br>
+    <button onclick="scrollToTop()" class="button small green" title="Go to top">Search Again</button>
+    </li>
+    `)
     if (responseJson.common_name !== null) {
         $('.results-hold').append(`
         <li><h3>Common Name: ${responseJson.common_name}</h3></li>
@@ -286,14 +295,6 @@ function displayResultsPlantId(responseJson) {
             <li>Growth Temperature Minimum: ${responseJson.main_species.growth.temperature_minimum.deg_f}</li>
         `)
     }
-    $('.results-hold').append(`
-    <br>
-    <br>
-    <button class="button small green" id="previous-results-button" title="Go to previous results">Previous Results</button>
-    <br>
-    <br>
-    <button onclick="scrollToTop()" class="button small green" title="Go to top">Search Again</button>
-    `)
     $('#previous-results-button').click(function(e){
         e.preventDefault();
         $('.results-hold').addClass('hidden');
@@ -347,10 +348,12 @@ function displayResultsWiki(responseJson) {
     });
     $('.wiki').empty();
     if (responseJson.query.pageids[0] === "-1") {
+        $('#previous-results-button-two').hide();
         $('.wiki').append(`
         <p>Sorry! No Wikipedia data for that plant scientific name was found. Please try another plant!</p>
         `)
     }else {
+        $('#previous-results-button-two').show();
         let pageId = responseJson.query.pageids[0];
         $('.wiki').empty();
         $('.wiki').append('<p><a href="//en.wikipedia.org/wiki/' + responseJson.query.pages[pageId].title + '">More on Wikipedia</a></p>');
